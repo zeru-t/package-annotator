@@ -1,0 +1,2 @@
+- [ ] Fix issues with empty lines
+- [ ] Add logo

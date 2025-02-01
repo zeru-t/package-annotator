@@ -9,6 +9,8 @@ esbuild.js
 vsc-extension-quickstart.md
 **/tsconfig.json
 **/eslint.config.mjs
+**/package.annotations.json
+**/pnpm-lock.yaml
 **/*.map
 **/*.ts
 **/.vscode-test.*
