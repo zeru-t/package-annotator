@@ -4,6 +4,7 @@
   "description": "Add annotations to package.json files",
   "version": "1.0.0",
   "publisher": "ztessema",
+  "repository": "https://github.com/zeru-t/package-annotator",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -15,12 +16,7 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "package-annotator.helloWorld",
-        "title": "Hello World"
-      }
-    ]
+    "commands": []
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
