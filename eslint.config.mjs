@@ -22,7 +22,6 @@ export default [{
 
         eqeqeq: 'warn',
         'no-throw-literal': 'warn',
-        semi: 'error',
-		quote: 'error'
+        semi: 'error'
     },
 }];
