@@ -1,0 +1,5 @@
+{
+	"test": "description of test script",
+	"watch": "description of watch script",
+	"watch:esbuild": "description of watch:esbuild script"
+}
