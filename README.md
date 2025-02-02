@@ -1,21 +1,27 @@
 # Package Annotator
 
-Package Annotator is a VS Code extension that adds annotations to package.json files.
+<img src="images/logo.png" alt="Package Annotator logo" width="12%" />
+
+Package Annotator is a VS Code extension that adds user defined annotations to the "scripts" section of *package.json* files.
+
+## Setup
+Annotations are stored in a *package.annotations.json* file in the same directory as the *package.json* file.
+1. Use the Annotations Generator to create a *package.annotations.json* file for every *package.json* file in your workspace.
+
+   <img src="images/generate.png" alt="Package Annotator logo" width="12%" />
+
+2. Add annotations to the *package.annotations.json* file.
+3. Annotations will appear in the *package.json* file:
+
+	<img src="images/screenshot.png" alt="sample annotation screenshot" width="45%"/>
+
+4. (OPTIONAL) Add 'package.annotations.json' to the list off file patterns to nest under *package.json* files in the Explorer's [File Nesting Patterns](vscode://settings/explorer.fileNesting.patterns) setting
 
 ## Functionality
-Loads annotations for package.json files based on an associated package.annotations.json file.
+Loads annotations for *package.json* files based on an associated *package.annotations.json* file.
+#### **Note: [`Editor Code Lens`](vscode://settings/editor.codeLens) must be enabled in VS Code for the annotations to appear.**
 
-## Installation
-1. Install the *Package Annotator* extension from the VS Code Marketplace.
-2. A warning appear on the status bar if a package.annotations.json file is missing. Click the warning to create a placeholder package.annotations.json file.
-3. Edit the package.annotations.json file to add descriptions for the scripts in your package.json file.
-4. Annotations will appear in the package.json file:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;
-![alt text](images/screenshot.png)
-
-### `Note: Code Lens must be enabled in VS Code for the annotations to appear.`
 
 ## Settings
 
@@ -24,7 +30,7 @@ This setting enables or disables the extension.
 * Options: `true` OR `FALSE`
 * _Default: `true`_
 
-### `"PackageAnnotator.ignoreMissingAnnotationsWarning"`
+### `"PackageAnnotator.hideMissingAnnotationsWarning"`
 This setting ignores the *'missing annotations'* status bar warning.
 * Options: `true` OR `FALSE`
 * _Default: `false`_

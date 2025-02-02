@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## v1.0.1 (2/1/2025)
 
 ### Added
-- Status bar warning for missing annotations files
-- Button to create placeholder annotations file
+- Status bar button to generate annotations files
+- Status bar warning when missing annotations files
 - Support for multiple package.json files
 - Setting to enable/disable extension
 - Setting to ignore missing annotations warning
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Updated package.json scripts search logic to be more efficient
 - Updated annotation match logic to be more efficient
+- Updated README
 
 
 ## v1.0.0 (2/1/2025)

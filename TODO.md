@@ -1,2 +1,3 @@
-- [ ] Fix issues with empty lines
-- [ ] Add logo
+# TODO
+- [X] Fix issues with empty lines
+- [X] Add logo
