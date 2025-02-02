@@ -26,15 +26,15 @@
 			"type": "object",
 			"title": "Package Annotator",
 			"properties": {
-				"PackageAnnotator.enabled": {
-					"type": "boolean",
-					"default": true,
-					"description": "Enable/disable the extension."
-				},
 				"PackageAnnotator.hideMissingAnnotationsWarning": {
 					"type": "boolean",
 					"default": false,
 					"markdownDescription": "Hide the *'missing annotations'* status bar warning."
+				},
+				"PackageAnnotator.hideGenerateAnnotationsButton": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Hide the *'GenerateAnnotations'* status bar button."
 				}
 			}
 		}

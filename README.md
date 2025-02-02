@@ -22,12 +22,12 @@ Annotations are stored in a *package.annotations.json* file in the same director
 
 ## Settings
 
-### `"PackageAnnotator.enabled"`
-This setting enables or disables the extension.
-* Options: `true` OR `FALSE`
-* _Default: `true`_
-
 ### `"PackageAnnotator.hideMissingAnnotationsWarning"`
-This setting ignores the *'missing annotations'* status bar warning.
-* Options: `true` OR `FALSE`
+This setting hides the *'missing annotations'* status bar warning.
+* Options: `true` OR `false`
+* _Default: `false`_
+
+### `"PackageAnnotator.hideGenerateAnnotationsButton"`
+This setting hides the *Generate Annotations* status bar button.
+* Options: `true` OR `false`
 * _Default: `false`_

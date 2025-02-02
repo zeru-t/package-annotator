@@ -1,32 +1,27 @@
 import { StatusBarAlignment, ThemeColor, workspace, commands, window } from 'vscode';
 import { getAnnotations, createAnnotationFiles, missingAnnotationFiles } from './annotation';
-import { hideWarning, extensionDisabled } from './configuration';
+import { hideWarning, hideButton } from './configuration';
 
 
 const commandId = 'package-annotator.showSelectionCount';
 
 export async function createStatusBarItem(subscriptions: { dispose(): any }[]) {
 
-	if (extensionDisabled())
-		return;
-
 	subscriptions.push(commands.registerCommand(commandId, async () => {
 		await createAnnotationFiles();
 		await updateStatusBarItem();
 	}));
 
-	const generatorStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 1000);
-	generatorStatusBarItem.text = `Generate Annotation files`;
-	generatorStatusBarItem.command = commandId;
-	generatorStatusBarItem.show();
-	subscriptions.push(generatorStatusBarItem);
-
 	const warningStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 1001);
 	warningStatusBarItem.text = `$(warning) $(package)`;
 	warningStatusBarItem.tooltip = `Missing Annotation files!`;
-	generatorStatusBarItem.command = commandId;
 	warningStatusBarItem.backgroundColor = new ThemeColor('statusBarItem.warningBackground');
 	subscriptions.push(warningStatusBarItem);
+
+	const buttonStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 1000);
+	buttonStatusBarItem.text = `Generate Annotation files`;
+	buttonStatusBarItem.command = commandId;
+	subscriptions.push(buttonStatusBarItem);
 
 	const watcher = workspace.createFileSystemWatcher('**/package*.json');
 	watcher.onDidCreate(updateStatusBarItem);
@@ -39,9 +34,15 @@ export async function createStatusBarItem(subscriptions: { dispose(): any }[]) {
 
 	async function updateStatusBarItem() {
 		await getAnnotations();
-		if (missingAnnotationFiles() && !hideWarning() && !extensionDisabled())
-			warningStatusBarItem.show();
-		else
+		if (missingAnnotationFiles()) {
+			if (hideWarning()) warningStatusBarItem.hide();
+			else warningStatusBarItem.show();
+			if (hideButton()) buttonStatusBarItem.hide();
+			else buttonStatusBarItem.show();
+		}
+		else {
 			warningStatusBarItem.hide();
+			buttonStatusBarItem.hide();
+		}
 	}
 }
