@@ -2,7 +2,7 @@
 	"name": "package-annotator",
 	"displayName": "Package Annotator",
 	"description": "Add annotations to package.json files",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"publisher": "ztessema",
 	"repository": "https://github.com/zeru-t/package-annotator",
 	"license": "MIT",
