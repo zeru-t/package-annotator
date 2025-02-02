@@ -2,21 +2,29 @@
 
 Package Annotator is a VS Code extension that adds annotations to package.json files.
 
-### Functionality
+## Functionality
 Loads annotations for package.json files based on an associated package.annotations.json file.
 
-### Installation
+## Installation
 1. Install the *Package Annotator* extension from the VS Code Marketplace.
 2. A warning appear on the status bar if a package.annotations.json file is missing. Click the warning to create a placeholder package.annotations.json file.
 3. Edit the package.annotations.json file to add descriptions for the scripts in your package.json file.
-4. Annotations will appear in the package.json file.
+4. Annotations will appear in the package.json file:
 
-### Configuration
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+![alt text](images/screenshot.png)
 
-| Setting | Description |
-| --- | --- |
-| PackageAnnotator.enabled | Enable/disable the extension.
-| PackageAnnotator.ignoreMissingAnnotationsWarning | Ignore the *'missing annotations'* status bar warning.
+### `Note: Code Lens must be enabled in VS Code for the annotations to appear.`
 
-#### Note
-Code Lens must be enabled in VS Code for the annotations to appear.
+## Settings
+
+### `"PackageAnnotator.enabled"`
+This setting enables or disables the extension.
+* Options: `true` OR `FALSE`
+* _Default: `true`_
+
+### `"PackageAnnotator.ignoreMissingAnnotationsWarning"`
+This setting ignores the *'missing annotations'* status bar warning.
+* Options: `true` OR `FALSE`
+* _Default: `false`_
