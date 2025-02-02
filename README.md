@@ -15,12 +15,9 @@ Annotations are stored in a *package.annotations.json* file in the same director
 
 	<img src="images/screenshot.png" alt="sample annotation screenshot" width="45%"/>
 
-4. (OPTIONAL) Add 'package.annotations.json' to the list off file patterns to nest under *package.json* files in the Explorer's [File Nesting Patterns](vscode://settings/explorer.fileNesting.patterns) setting
+4. (OPTIONAL) Add 'package.annotations.json' to the list off file patterns to nest under *package.json* files in the Explorer's [File Nesting Patterns](vscode://settings/explorer.fileNesting.patterns) VS Code settings
 
-## Functionality
-Loads annotations for *package.json* files based on an associated *package.annotations.json* file.
-#### **Note: [`Editor Code Lens`](vscode://settings/editor.codeLens) must be enabled in VS Code for the annotations to appear.**
-
+#### **Note: [`Editor Code Lens`](vscode://settings/editor.codeLens) must be enabled in VS Code settings for the annotations to appear.**
 
 
 ## Settings
