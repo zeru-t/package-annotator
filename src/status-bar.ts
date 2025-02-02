@@ -3,7 +3,7 @@ import { getAnnotations, createAnnotationFiles, missingAnnotationFiles } from '.
 import { hideWarning, hideButton } from './configuration';
 
 
-const commandId = 'package-annotator.showSelectionCount';
+const commandId = 'package-annotator.generateAnnotationFiles';
 
 export async function createStatusBarItem(subscriptions: { dispose(): any }[]) {
 
