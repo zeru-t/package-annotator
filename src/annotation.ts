@@ -3,9 +3,9 @@ import { extensionDisabled } from './configuration';
 
 
 const defaultAnnotations = {
-	"SCRIPT_1": "SCRIPT_1 DESCRIPTION",
-	"SCRIPT_2": "SCRIPT_2 DESCRIPTION",
-	"SCRIPT_3": "SCRIPT_3 DESCRIPTION"
+	'SCRIPT_1': 'SCRIPT_1 DESCRIPTION',
+	'SCRIPT_2': 'SCRIPT_2 DESCRIPTION',
+	'SCRIPT_3': 'SCRIPT_3 DESCRIPTION'
 };
 let allAnnotations: Record<string, Annotation|null>;
 export async function getAnnotations() {
@@ -75,7 +75,7 @@ export class AnnotationProvider implements CodeLensProvider {
 					return null;
 
 				const range = document.lineAt(scriptsStart + index).range;
-				const options = { title: annotation, command: "" };
+				const options = { title: annotation, command: '' };
 				return new CodeLens(range, options);
 			})
 			.filter(script => script !== null);

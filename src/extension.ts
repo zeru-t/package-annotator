@@ -11,7 +11,7 @@ export async function activate(_context: ExtensionContext) {
 		return;
 
 	await createStatusBarItem(_context.subscriptions);
-	languages.registerCodeLensProvider({ language: "json", pattern: "**/package.json" }, new AnnotationProvider());
+	languages.registerCodeLensProvider({ language: 'json', pattern: '**/package.json' }, new AnnotationProvider());
 }
 
 export function deactivate() {

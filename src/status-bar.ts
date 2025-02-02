@@ -1,4 +1,4 @@
-import { StatusBarAlignment, ThemeColor, workspace, commands, window  } from 'vscode';
+import { StatusBarAlignment, ThemeColor, workspace, commands, window } from 'vscode';
 import { getAnnotations, createAnnotationFiles, missingAnnotationFiles } from './annotation';
 import { hideWarning, extensionDisabled } from './configuration';
 
