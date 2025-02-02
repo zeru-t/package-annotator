@@ -5,6 +5,11 @@
 	"version": "1.0.1",
 	"publisher": "ztessema",
 	"repository": "https://github.com/zeru-t/package-annotator",
+	"license": "MIT",
+	"author": {
+		"name": "ztessema",
+		"url": "https://github.com/zeru-t"
+	},
 	"engines": {
 		"vscode": "^1.96.0"
 	},
