@@ -1,22 +1,27 @@
 import { StatusBarAlignment, ThemeColor, workspace, commands, window  } from 'vscode';
 import { getAnnotations, createAnnotationFiles, missingAnnotationFiles } from './annotation';
+import { showWarning, extensionDisabled } from './configuration';
 
 
 const commandId = 'package-annotator.showSelectionCount';
 
 export async function createStatusBarItem(subscriptions: { dispose(): any }[]) {
 
+	if (extensionDisabled())
+		return;
+
 	subscriptions.push(commands.registerCommand(commandId, async () => {
 		const result = await window.showQuickPick(
 			['Create a package.annotations.json file', 'Ignore warning'],
 			{ placeHolder: 'A package.annotations.json file is needed to annotate scripts' }
 		);
-		console.log(result);
+
 		if (result === 'Create a package.annotations.json file')
 			createAnnotationFiles();
-		else {
-			// TODO: add ignore warning to settings
-		}
+		else
+			workspace.getConfiguration('PackageAnnotator').update('ignoreMissingAnnotationsWarning', true);
+
+		await updateStatusBarItem();
 	}));
 
 	const statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 1000);
@@ -35,7 +40,7 @@ export async function createStatusBarItem(subscriptions: { dispose(): any }[]) {
 
 	async function updateStatusBarItem() {
 		await getAnnotations();
-		if (missingAnnotationFiles())
+		if (missingAnnotationFiles() && showWarning())
 			statusBarItem.show();
 		else
 			statusBarItem.hide();

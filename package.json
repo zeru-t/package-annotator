@@ -17,7 +17,22 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
-		"commands": []
+		"configuration": {
+			"type": "object",
+			"title": "Package Annotator",
+			"properties": {
+				"PackageAnnotator.enabled": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable/disable the extension."
+				},
+				"PackageAnnotator.ignoreMissingAnnotationsWarning": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Ignore the *'missing annotations'* status bar warning."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "pnpm run package",

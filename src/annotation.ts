@@ -1,4 +1,5 @@
 import { CodeLensProvider, CodeLens, CancellationToken, TextDocument, workspace, window, Uri } from 'vscode';
+import { extensionDisabled } from './configuration';
 
 
 const defaultAnnotations = {
@@ -39,6 +40,9 @@ export class AnnotationProvider implements CodeLensProvider {
 	constructor() {}
 
 	public async provideCodeLenses(document: TextDocument, _token: CancellationToken) {
+
+		if (extensionDisabled())
+			return [];
 
 		const annotationsPath = getAnnotationsPath(document.uri.path);
 		const annotations = allAnnotations[annotationsPath];
