@@ -11,6 +11,7 @@ vsc-extension-quickstart.md
 **/eslint.config.mjs
 **/package.annotations.json
 **/pnpm-lock.yaml
+**/TODO.md
 **/*.map
 **/*.ts
 **/.vscode-test.*

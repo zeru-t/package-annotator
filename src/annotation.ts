@@ -26,11 +26,17 @@ export async function getAnnotations() {
 }
 export async function createAnnotationFiles() {
 	const packageFiles = await workspace.findFiles('**/package.json', '**/node_modules/**');
-	packageFiles.forEach(async (packageFile) => {
-		const path = Uri.file(getAnnotationsPath(packageFile.path));
-		await workspace.fs.writeFile(path, Buffer.from(JSON.stringify(defaultAnnotations, null, 4)));
-		await window.showTextDocument(path);
-	});
+	packageFiles
+		.filter(({ path }) => {
+			const annotationsPath = getAnnotationsPath(path);
+			const annotations = allAnnotations[annotationsPath];
+			return annotations === null;
+		})
+		.forEach(async ({ path: packageFilePath }) => {
+			const annotationsPath = Uri.file(getAnnotationsPath(packageFilePath));
+			await workspace.fs.writeFile(annotationsPath, Buffer.from(JSON.stringify(defaultAnnotations, null, 4)));
+			await window.showTextDocument(annotationsPath);
+		});
 }
 export const missingAnnotationFiles = () => Object.values(allAnnotations).some(exists => !exists);
 const getAnnotationsPath = (path: string) => path.replace('package.json', 'package.annotations.json');
@@ -49,7 +55,8 @@ export class AnnotationProvider implements CodeLensProvider {
 		if (!annotations)
 			return [];
 
-		const scriptsTextMatch = /(.+"scripts":\s*{\n\s*)(.+?)(\s*})/gs.exec(document.getText().trim());
+		const documentText = document.getText();
+		const scriptsTextMatch = /(.+"scripts":\s*{[\r\n]+\s*)(.+?)(\s*})/gs.exec(documentText);
 		if (scriptsTextMatch?.length !== 4)
 			return [];
 

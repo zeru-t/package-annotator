@@ -1,6 +1,6 @@
 import { StatusBarAlignment, ThemeColor, workspace, commands, window  } from 'vscode';
 import { getAnnotations, createAnnotationFiles, missingAnnotationFiles } from './annotation';
-import { showWarning, extensionDisabled } from './configuration';
+import { hideWarning, extensionDisabled } from './configuration';
 
 
 const commandId = 'package-annotator.showSelectionCount';
@@ -11,38 +11,37 @@ export async function createStatusBarItem(subscriptions: { dispose(): any }[]) {
 		return;
 
 	subscriptions.push(commands.registerCommand(commandId, async () => {
-		const result = await window.showQuickPick(
-			['Create a package.annotations.json file', 'Ignore warning'],
-			{ placeHolder: 'A package.annotations.json file is needed to annotate scripts' }
-		);
-
-		if (result === 'Create a package.annotations.json file')
-			createAnnotationFiles();
-		else
-			workspace.getConfiguration('PackageAnnotator').update('ignoreMissingAnnotationsWarning', true);
-
+		await createAnnotationFiles();
 		await updateStatusBarItem();
 	}));
 
-	const statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 1000);
-	statusBarItem.text = `Missing annotations file!`;
-	statusBarItem.command = commandId;
-	statusBarItem.backgroundColor = new ThemeColor('statusBarItem.warningBackground');
-	subscriptions.push(statusBarItem);
+	const generatorStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 1000);
+	generatorStatusBarItem.text = `Generate Annotation files`;
+	generatorStatusBarItem.command = commandId;
+	generatorStatusBarItem.show();
+	subscriptions.push(generatorStatusBarItem);
+
+	const warningStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 1001);
+	warningStatusBarItem.text = `$(warning) $(package)`;
+	warningStatusBarItem.tooltip = `Missing Annotation files!`;
+	generatorStatusBarItem.command = commandId;
+	warningStatusBarItem.backgroundColor = new ThemeColor('statusBarItem.warningBackground');
+	subscriptions.push(warningStatusBarItem);
 
 	const watcher = workspace.createFileSystemWatcher('**/package*.json');
 	watcher.onDidCreate(updateStatusBarItem);
 	watcher.onDidDelete(updateStatusBarItem);
 	watcher.onDidChange(updateStatusBarItem);
+	workspace.onDidChangeConfiguration(updateStatusBarItem);
 
 	await updateStatusBarItem();
 
 
 	async function updateStatusBarItem() {
 		await getAnnotations();
-		if (missingAnnotationFiles() && showWarning())
-			statusBarItem.show();
+		if (missingAnnotationFiles() && !hideWarning() && !extensionDisabled())
+			warningStatusBarItem.show();
 		else
-			statusBarItem.hide();
+			warningStatusBarItem.hide();
 	}
 }

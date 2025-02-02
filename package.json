@@ -8,7 +8,7 @@
 	"engines": {
 		"vscode": "^1.96.0"
 	},
-	"icon": "images/icon.png",
+	"icon": "images/logo.png",
 	"categories": [
 		"Other"
 	],
@@ -26,10 +26,10 @@
 					"default": true,
 					"description": "Enable/disable the extension."
 				},
-				"PackageAnnotator.ignoreMissingAnnotationsWarning": {
+				"PackageAnnotator.hideMissingAnnotationsWarning": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "Ignore the *'missing annotations'* status bar warning."
+					"markdownDescription": "Hide the *'missing annotations'* status bar warning."
 				}
 			}
 		}
